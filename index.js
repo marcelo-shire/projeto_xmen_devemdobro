@@ -50,3 +50,6 @@ personagens.forEach((personagem)=> {
     })
 
 })
+
+
+
