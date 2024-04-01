@@ -23,49 +23,30 @@ personagens.forEach((personagem)=> {
     personagem.addEventListener('mouseenter', () => {
 
  //Gambiarra Tela Celular
-
+        
         if(window.innerWidth < 450) {
             window.scrollTo({top: 0, behavior: 'smooth'});
         }
-//Passo 3
+        //Passo 3
 
-        removerSelecaoDoPersonagem(personagem);
+        const personagemSelecionado = document.querySelector('.selecionado');
+        personagemSelecionado.classList.remove('selecionado')
+        personagem.classList.add('selecionado');
 
 //OBJETIVO 2 
 //Passo 1
-        const { imagemPersonagemGrande, idPersonagem } = alterarImagemPersonagemSelecionado(personagem);
+        const imagemPersonagemGrande = document.querySelector('.personagem-grande');
+//Passo 2
+        const idPersonagem = personagem.attributes.id.value;
 
         imagemPersonagemGrande.src = `./src/imagens/card-${idPersonagem}.png`;
 //Passo 3
-        alterarDescricaoPersonagem(personagem);
+        const nomePersonagem = document.getElementById('nome-personagem');
+
+        nomePersonagem.innerText = personagem.getAttribute('data-name');
 //Passo 4
-        alterarDescricaoPersonagem(personagem);
+        const descricaoPersonagem = document.getElementById('descricao-personagem');
+        descricaoPersonagem.innerText = personagem.getAttribute('data-description');
     })
 
 })
-
-
-
-function alterarDescricaoPersonagem(personagem) {
-    const descricaoPersonagem = document.getElementById('descricao-personagem');
-    descricaoPersonagem.innerText = personagem.getAttribute('data-description');
-}
-
-function alterarNomePersonagemSelecionado(personagem) {
-    const nomePersonagem = document.getElementById('nome-personagem');
-    nomePersonagem.innerText = personagem.getAttribute('data-name');
-}
-
-function alterarImagemPersonagemSelecionado(personagem) {
-    const imagemPersonagemGrande = document.querySelector('.personagem-grande');
-    //Passo 2
-    const idPersonagem = personagem.attributes.id.value;
-    return { imagemPersonagemGrande, idPersonagem };
-}
-
-function removerSelecaoDoPersonagem(personagem) {
-    const personagemSelecionado = document.querySelector('.selecionado');
-    personagemSelecionado.classList.remove('selecionado');
-    personagem.classList.add('selecionado');
-}
-
